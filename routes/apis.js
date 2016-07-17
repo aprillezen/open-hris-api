@@ -8,10 +8,17 @@ module.exports = {
 				console.log(req.body);
 				con.query('SELECT * FROM users WHERE Username=? AND Password=?', [req.body.username, req.body.password], function(err, results){						
 					if (err){
-						res.send({status: 1, message: 'Error'});
+						res.send({status: 0, message: 'Error'});
 					}else{
 						console.log(results.length);
-						res.send({status: 0, message: 'success'});
+						if (results.length==0){
+							res.send({status: 0, message: 'Invalid username/password'});
+						}else{
+							setTimeout(function(){
+								res.send({status: 1, message: 'success'});
+							},5000);
+							
+						}
 					}	
 
 				})
