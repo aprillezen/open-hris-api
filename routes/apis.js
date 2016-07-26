@@ -23,5 +23,9 @@ module.exports = {
 		app.post('/batch/update/', function(req, res){
 			batch.update(req.body, res);
 		});
+
+		app.get('/batch/delete/:id/', function(req, res){
+			batch.delete(req.params.id, res);
+		});
 	}
 }
