@@ -1,9 +1,9 @@
 var db  = require('../db');
 
-function Batch(){
+function orgunit(){
 	this.get = function(res){
 		db.acquire(function(err, con){				
-			con.query('SELECT * FROM batches', function(err, results){						
+			con.query('SELECT * FROM organizational_unit', function(err, results){						
 				con.release()
 				if (err){					
 					res.send({status: 0, message: 'Database error'});
@@ -18,7 +18,7 @@ function Batch(){
 	}
 	this.edit = function(id, res){
 		db.acquire(function(err, con){				
-			con.query('SELECT * FROM batches WHERE id=?', id, function(err, results){						
+			con.query('SELECT * FROM organizational_unit WHERE id=?', id, function(err, results){						
 				con.release()
 				if (err){
 					res.send({status: 0, message: 'Database error'});
@@ -31,10 +31,10 @@ function Batch(){
 			})
 		})
 	}
-	this.save = function(batch, res){
-		console.log(batch)
+	this.save = function(unit, res){
+		console.log(unit)
 		db.acquire(function(err, con){				
-			con.query('INSERT INTO batches SET ?', batch, function(err, results){						
+			con.query('INSERT INTO organizational_unit SET ?', unit, function(err, results){						
 				con.release()
 				if (err){
 					res.send({status: 0, message: 'Database error'});
@@ -47,10 +47,10 @@ function Batch(){
 			})
 		})
 	}
-	this.update = function(batch, res){
-		console.log(batch)
+	this.update = function(unit, res){
+		//console.log(unit)
 		db.acquire(function(err, con){				
-			con.query('UPDATE batches SET ? WHERE id=?', [batch, batch.id], function(err, results){						
+			con.query('UPDATE organizational_unit SET ? WHERE id=?', [unit, unit.id], function(err, results){						
 				con.release()
 				if (err){
 					res.send({status: 0, message: 'Database error'});
@@ -66,7 +66,7 @@ function Batch(){
 
 	this.delete = function(id, res){		
 		db.acquire(function(err, con){				
-			con.query('DELETE FROM batches WHERE id=?', id, function(err, results){						
+			con.query('DELETE FROM organizational_unit WHERE id=?', id, function(err, results){						
 				con.release()
 				if (err){
 					res.send({status: 0, message: 'Database error'});
@@ -81,4 +81,4 @@ function Batch(){
 	}
 }
 
-module.exports = new Batch();
+module.exports = new orgunit();

@@ -1,31 +1,42 @@
 var db  = require('../db');
-var user = require('../model/users')
-var batch = require('../model/batch')
+var profile = require('../model/company_profile')
+var orgunit = require('../model/orgunit')
+var user = require('../model/user')
 
 module.exports = {
 	configure: function(app){
+
 		app.post('/login/', function(req, res){
 			user.login(req.body, res);
 		});
 
-		app.get('/batch/', function(req, res){
-			batch.get(res);
+		app.post('/profile/update', function(req, res){
+			profile.update(req.body, res);
 		});
 
-		app.get('/batch/edit/:id/', function(req, res){
-			batch.edit(req.params.id, res);
+		app.get('/profile/', function(req, res){
+			profile.get(res);
 		});
 
-		app.post('/batch/add/', function(req, res){
-			batch.save(req.body, res);
+		app.get('/units/', function(req, res){
+			orgunit.get(res);
 		});
 
-		app.post('/batch/update/', function(req, res){
-			batch.update(req.body, res);
+		app.get('/units/edit/:id/', function(req, res){
+			orgunit.edit(req.params.id, res);
 		});
 
-		app.get('/batch/delete/:id/', function(req, res){
-			batch.delete(req.params.id, res);
+		app.post('/units/add/', function(req, res){
+			orgunit.save(req.body, res);
 		});
+
+		app.post('/units/update/', function(req, res){
+			orgunit.update(req.body, res);
+		});
+
+		app.get('/units/delete/:id/', function(req, res){
+			orgunit.delete(req.params.id, res);
+		});
+
 	}
 }

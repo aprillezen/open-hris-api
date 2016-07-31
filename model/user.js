@@ -6,6 +6,7 @@ function User(){
 		db.acquire(function(err, con){				
 			console.log(user);
 			con.query('SELECT * FROM users WHERE Username=? AND Password=?', [user.username, user.password], function(err, results){						
+				con.release()
 				if (err){
 					res.send({status: 0, message: 'Error'});
 				}else{
