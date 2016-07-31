@@ -9,9 +9,14 @@ function profile(){
 				if (err){
 					res.send({status: 0, message: 'Error'});
 				}else{
-					setTimeout(function(){
-						res.send({status: 1, data: results});
-					},3000);
+					var data={}
+					if (results.length>0){
+						data = results[0]
+					}
+					res.send({status: 1, data: data});
+					// setTimeout(function(){
+						
+					// },3000);
 				}	
 
 			})
@@ -19,17 +24,32 @@ function profile(){
 	}
 
 	this.update = function(profile, res){
-		db.acquire(function(err, con){				
-			con.query('UPDATE companyprofile SET ? WHERE id=?', [profile, profile.id], function(err, results){						
-				con.release()
-				if (err){
-					res.send({status: 0, message: 'Database error'});
+		
+		db.acquire(function(err, con){		
+			con.query('SELECT * FROM companyprofile', function(err, results){						
+				if (results.length>0){
+					con.query('UPDATE companyprofile SET ? WHERE id=?', [profile, profile.id], function(err, results){						
+						con.release()
+						setTimeout(function(){
+							if (err){
+								res.send({status: 0, message: 'Database error'});
+							}else{
+								res.send({status: 1, message: 'Success'});							
+							}	
+						},3000);
+					})
 				}else{
-					res.send({status: 1, message: 'Success'});
-					// setTimeout(function(){
-					// 	res.send({status: 1, data: results});
-					// },3000);
-				}	
+					con.query('INSERT INTO companyprofile SET ?', profile, function(err, results){						
+						con.release()
+						setTimeout(function(){
+							if (err){
+								res.send({status: 0, message: 'Database error'});
+							}else{
+								res.send({status: 1, message: 'Success'});
+							}									
+						},3000);				
+					})
+				}
 			})
 		})
 	}
