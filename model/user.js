@@ -14,10 +14,7 @@ function User(){
 					if (results.length==0){
 						res.send({status: 0, message: 'Invalid username/password'});
 					}else{
-						setTimeout(function(){
-							res.send({status: 1, message: 'success'});
-						},3000);
-						
+						res.send({status: 1, message: 'success'});	
 					}
 				}	
 

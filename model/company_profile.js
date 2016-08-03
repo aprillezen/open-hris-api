@@ -13,10 +13,10 @@ function profile(){
 					if (results.length>0){
 						data = results[0]
 					}
-					res.send({status: 1, data: data});
-					// setTimeout(function(){
-						
-					// },3000);
+					
+					setTimeout(function(){
+						res.send({status: 1, data: data});
+					},3000);
 				}	
 
 			})
@@ -30,7 +30,7 @@ function profile(){
 				if (results.length>0){
 					con.query('UPDATE companyprofile SET ? WHERE id=?', [profile, profile.id], function(err, results){						
 						con.release()
-						setTimeout(function(){
+						setTimeout(function(){	
 							if (err){
 								res.send({status: 0, message: 'Database error'});
 							}else{
@@ -41,13 +41,13 @@ function profile(){
 				}else{
 					con.query('INSERT INTO companyprofile SET ?', profile, function(err, results){						
 						con.release()
-						setTimeout(function(){
+						setTimeout(function(){	
 							if (err){
 								res.send({status: 0, message: 'Database error'});
 							}else{
 								res.send({status: 1, message: 'Success'});
-							}									
-						},3000);				
+							}							
+						},3000);										
 					})
 				}
 			})
