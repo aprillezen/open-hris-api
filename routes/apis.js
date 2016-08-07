@@ -1,15 +1,15 @@
 var db  = require('../db');
 var profile = require('../model/company_profile')
-var orgunit = require('../model/orgunit')
+var department = require('../model/department')
 var user = require('../model/user')
 
 module.exports = {
-	configure: function(app){
-
+	configureLogin: function(app){
 		app.post('/login/', function(req, res){
 			user.login(req.body, res);
-		});
-
+		});		
+	},
+	configureProfile: function(app){	
 		app.post('/profile/update', function(req, res){
 			profile.update(req.body, res);
 		});
@@ -17,26 +17,28 @@ module.exports = {
 		app.get('/profile/', function(req, res){
 			profile.get(res);
 		});
-
-		app.get('/units/', function(req, res){
-			orgunit.get(res);
+	},
+	configureDept: function(app){	
+		app.get('/department/', function(req, res){
+			department.get(res);
 		});
 
-		app.get('/units/edit/:id/', function(req, res){
-			orgunit.edit(req.params.id, res);
+		app.get('/department/edit/:id/', function(req, res){
+			department.edit(req.params.id, res);
 		});
 
-		app.post('/units/add/', function(req, res){
-			orgunit.save(req.body, res);
+		app.post('/department/add/', function(req, res){
+			department.save(req.body, res);
 		});
 
-		app.post('/units/update/', function(req, res){
-			orgunit.update(req.body, res);
+		app.post('/department/update/', function(req, res){
+			department.update(req.body, res);
 		});
 
-		app.get('/units/delete/:id/', function(req, res){
-			orgunit.delete(req.params.id, res);
+		app.get('/department/delete/:id/', function(req, res){
+			department.delete(req.params.id, res);
 		});
 
 	}
+
 }

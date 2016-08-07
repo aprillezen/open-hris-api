@@ -16,7 +16,7 @@ function profile(){
 					
 					setTimeout(function(){
 						res.send({status: 1, data: data});
-					},3000);
+					},2000);
 				}	
 
 			})
