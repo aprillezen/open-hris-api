@@ -34,6 +34,8 @@ app.use('/', routes);
 api.configureLogin(app);
 api.configureProfile(app);
 api.configureDept(app);
+api.configureBranches(app);
+api.configureEmployee(app);
 
 
 // catch 404 and forward to error handler
