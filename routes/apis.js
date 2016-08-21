@@ -85,6 +85,10 @@ module.exports = {
 			employee.delete(req.params.id, res);
 		});
 
+		app.get('/employee/list/', function(req, res){
+			employee.getlist(res);
+		});
+
 	}
 
 }

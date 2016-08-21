@@ -88,6 +88,24 @@ function employee(){
 			con.release()	
 		})
 	}
+
+	this.getlist = function(res){
+		db.acquire(function(err, con){				
+			con.query('SELECT id as value, CONCAT(fname," ", lname) AS label FROM employee', function(err, results){						
+				con.release()				
+				if (err){					
+					res.send({status: 0, message: 'Database error'});
+				}else{
+					res.send({status: 1, data: results});					
+				}						
+			})
+		})
+	}
 }
 
 module.exports = new employee();
+
+
+
+
+
