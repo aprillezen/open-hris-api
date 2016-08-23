@@ -3,6 +3,7 @@ var profile = require('../model/company_profile')
 var department = require('../model/department')
 var branches = require('../model/branches')
 var employee = require('../model/employee')
+var job = require('../model/jobtitles')
 var user = require('../model/user')
 
 module.exports = {
@@ -40,7 +41,6 @@ module.exports = {
 		app.get('/department/delete/:id/', function(req, res){
 			department.delete(req.params.id, res);
 		});
-
 	},
 	configureBranches: function(app){	
 		app.get('/branches/', function(req, res){
@@ -63,6 +63,27 @@ module.exports = {
 			branches.delete(req.params.id, res);
 		});
 
+	},
+	configureJob: function(app){	
+		app.get('/jobtitle/', function(req, res){
+			job.get(res);
+		});
+
+		app.get('/jobtitle/edit/:id/', function(req, res){
+			job.edit(req.params.id, res);
+		});
+
+		app.post('/jobtitle/add/', function(req, res){
+			job.save(req.body, res);
+		});
+
+		app.post('/jobtitle/update/', function(req, res){
+			job.update(req.body, res);
+		});
+
+		app.get('/jobtitle/delete/:id/', function(req, res){
+			job.delete(req.params.id, res);
+		});
 	},
 	configureEmployee: function(app){	
 		app.get('/employee/', function(req, res){
@@ -88,7 +109,6 @@ module.exports = {
 		app.get('/employee/list/', function(req, res){
 			employee.getlist(res);
 		});
-
 	}
 
 }

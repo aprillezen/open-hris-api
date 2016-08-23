@@ -36,6 +36,7 @@ api.configureProfile(app);
 api.configureDept(app);
 api.configureBranches(app);
 api.configureEmployee(app);
+api.configureJob(app);
 
 
 // catch 404 and forward to error handler
