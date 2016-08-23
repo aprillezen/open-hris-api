@@ -101,6 +101,36 @@ function employee(){
 			})
 		})
 	}
+
+	this.getemployment = function(id, res){
+		db.acquire(function(err, con){	
+			setTimeout(function(){	
+				var sql = 'SELECT employee_employment.id, employee_employment.startdate, jobtitles.title as jobtitle,'
+					sql = sql +	' employee_employment.joblevel,employee_employment.category, employee_employment.schedule,'
+					sql = sql +	' employee_employment.empstatus, employee_employment.separationdate,employee_employment.paymentmode,'
+					sql = sql +	' branches.branchname AS branch, department.description AS department, employee_employment.group,'
+					sql = sql +	' employee_employment.sssno, employee_employment.philhealthno, employee_employment.pagibigno,'
+					sql = sql +	' employee_employment.tin, employee_employment.taxstatus'
+					sql = sql +	' FROM employee_employment'
+					sql = sql +	' INNER JOIN jobtitles ON employee_employment.jobtitle=jobtitles.id'
+					sql = sql +	' INNER JOIN branches ON employee_employment.branch=branches.id'
+					sql = sql +	' INNER JOIN department ON employee_employment.department=department.id'
+					sql = sql +	' WHERE employee_employment.id = ?'					
+					con.query(sql, id, function(err, results){							
+						if (err){
+							res.send({status: 0, message: 'Database error'});
+						}else{
+							if (results.length>0){
+								res.send({status: 1, data: results[0]});	
+							}else{
+								res.send({status: 0, message: 'No record'});
+							}										
+						}	
+					})
+			},1000)		
+			con.release()	
+		})
+	}
 }
 
 module.exports = new employee();

@@ -109,6 +109,9 @@ module.exports = {
 		app.get('/employee/list/', function(req, res){
 			employee.getlist(res);
 		});
+		app.get('/employee/employment/:id', function(req, res){
+			employee.getemployment(req.params.id, res);
+		});
 	}
 
 }
