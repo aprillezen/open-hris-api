@@ -108,7 +108,7 @@ function employee(){
 				var sql = 'SELECT employee_employment.id, employee_employment.startdate, jobtitles.title as jobtitle,'
 					sql = sql +	' employee_employment.joblevel,employee_employment.category, employee_employment.schedule,'
 					sql = sql +	' employee_employment.empstatus, employee_employment.separationdate,employee_employment.paymentmode,'
-					sql = sql +	' branches.branchname AS branch, department.description AS department, employee_employment.group,'
+					sql = sql +	' branches.branchname AS branch, department.description AS department, '
 					sql = sql +	' employee_employment.sssno, employee_employment.philhealthno, employee_employment.pagibigno,'
 					sql = sql +	' employee_employment.tin, employee_employment.taxstatus'
 					sql = sql +	' FROM employee_employment'
@@ -127,6 +127,58 @@ function employee(){
 							}										
 						}	
 					})
+			},1000)		
+			con.release()	
+		})
+	}
+
+	this.employmentedit = function(id, res){
+		db.acquire(function(err, con){	
+			setTimeout(function(){	
+				var retdata = {
+					'employment': {},					
+					'jobtitles': [],
+					'branches': [],
+					'department': [],
+					'taxstatus': [],
+					'withdata': false,
+					'haserror': false,
+					'message':''
+				}
+				var sql = 'SELECT * FROM employee_employment WHERE id = ?'					
+				con.query(sql, id, function(err, results){							
+					if (err){						
+						retdata.haserror = true;
+						retdata.message = err;
+					}else{						
+						if (results.length>0){
+							retdata.employment = results[0];
+							retdata.withdata = true;													
+						}														
+					}	
+				})
+				con.query('SELECT id as value, title AS label FROM jobtitles', function(err, results){														
+					if (!err){		
+						retdata.jobtitles = results;											
+					}							
+				})	
+				con.query('SELECT id as value, branchname AS label FROM branches', function(err, results){														
+					if (!err){		
+						retdata.branches = results;											
+					}							
+				})	
+				con.query('SELECT id as value, description AS label FROM department', function(err, results){														
+					if (!err){		
+						retdata.department = results;											
+					}							
+				})
+				con.query('SELECT id as value, taxcode AS label FROM py_taxstatus', function(err, results){														
+					if (!err){		
+						retdata.taxstatus = results;											
+					}	
+					//console.log(retdata);
+					res.send({ data : retdata });										
+				})				
 			},1000)		
 			con.release()	
 		})

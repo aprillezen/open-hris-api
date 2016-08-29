@@ -1,10 +1,14 @@
-var db  = require('../db');
+
+var payaccount = require('../model/payaccount')
+var leavetype = require('../model/leavetype')
 var profile = require('../model/company_profile')
 var department = require('../model/department')
 var branches = require('../model/branches')
 var employee = require('../model/employee')
 var job = require('../model/jobtitles')
 var user = require('../model/user')
+var taxstatus = require('../model/taxstatus')
+
 
 module.exports = {
 	configureLogin: function(app){
@@ -112,6 +116,76 @@ module.exports = {
 		app.get('/employee/employment/:id', function(req, res){
 			employee.getemployment(req.params.id, res);
 		});
-	}
+		app.get('/employee/employment/edit/:id', function(req, res){
+			employee.employmentedit(req.params.id, res);
+		});
+	},
+	configureLeaveType: function(app){	
+		app.get('/lt/', function(req, res){
+			leavetype.get(res);
+		});
+
+		app.get('/lt/edit/:id/', function(req, res){
+			leavetype.edit(req.params.id, res);
+		});
+
+		app.post('/lt/add/', function(req, res){
+			leavetype.save(req.body, res);
+		});
+
+		app.post('/lt/update/', function(req, res){
+			leavetype.update(req.body, res);
+		});
+
+		app.get('/lt/delete/:id/', function(req, res){
+			leavetype.delete(req.params.id, res);
+		});
+	},
+	configurePayAccount: function(app){	
+		app.get('/paycode/', function(req, res){
+			payaccount.get(res);
+		});
+
+		app.get('/paycode/edit/:id/', function(req, res){
+			payaccount.edit(req.params.id, res);
+		});
+
+		app.post('/paycode/add/', function(req, res){
+			payaccount.save(req.body, res);
+		});
+
+		app.post('/paycode/update/', function(req, res){
+			payaccount.update(req.body, res);
+		});
+
+		app.get('/paycode/delete/:id/', function(req, res){
+			payaccount.delete(req.params.id, res);
+		});
+
+		app.get('/paycode/list/', function(req, res){
+			payaccount.getlist(res);
+		});
+	},
+	configureTaxStatus: function(app){	
+		app.get('/taxstatus/', function(req, res){
+			taxstatus.get(res);
+		});
+
+		app.get('/taxstatus/edit/:id/', function(req, res){
+			taxstatus.edit(req.params.id, res);
+		});
+
+		app.post('/taxstatus/add/', function(req, res){
+			taxstatus.save(req.body, res);
+		});
+
+		app.post('/taxstatus/update/', function(req, res){
+			taxstatus.update(req.body, res);
+		});
+
+		app.get('/taxstatus/delete/:id/', function(req, res){
+			taxstatus.delete(req.params.id, res);
+		});
+	},
 
 }

@@ -37,7 +37,9 @@ api.configureDept(app);
 api.configureBranches(app);
 api.configureEmployee(app);
 api.configureJob(app);
-
+api.configureLeaveType(app);
+api.configurePayAccount(app);
+api.configureTaxStatus(app);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
