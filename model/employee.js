@@ -78,12 +78,14 @@ function employee(){
 		db.acquire(function(err, con){	
 			setTimeout(function(){	
 				con.query('DELETE FROM employee WHERE id=?', id, function(err, results){										
-				if (err){
-					res.send({status: 0, message: 'Database error'});
-				}else{
-					res.send({status: 1, message: 'Success'});					
-				}	
+					if (err){
+						res.send({status: 0, message: 'Database error'});
+					}else{
+						con.query('DELETE FROM employee_employment WHERE id=?', id)
+						res.send({status: 1, message: 'Success'});					
+					}	
 				})
+
 			},1000)		
 			con.release()	
 		})
@@ -110,11 +112,12 @@ function employee(){
 					sql = sql +	' employee_employment.empstatus, employee_employment.separationdate,employee_employment.paymentmode,'
 					sql = sql +	' branches.branchname AS branch, department.description AS department, '
 					sql = sql +	' employee_employment.sssno, employee_employment.philhealthno, employee_employment.pagibigno,'
-					sql = sql +	' employee_employment.tin, employee_employment.taxstatus'
+					sql = sql +	' employee_employment.tin, py_taxstatus.taxcode as taxstatus'
 					sql = sql +	' FROM employee_employment'
 					sql = sql +	' INNER JOIN jobtitles ON employee_employment.jobtitle=jobtitles.id'
 					sql = sql +	' INNER JOIN branches ON employee_employment.branch=branches.id'
 					sql = sql +	' INNER JOIN department ON employee_employment.department=department.id'
+					sql = sql +	' INNER JOIN py_taxstatus ON employee_employment.taxstatus=py_taxstatus.id'
 					sql = sql +	' WHERE employee_employment.id = ?'					
 					con.query(sql, id, function(err, results){							
 						if (err){
@@ -181,6 +184,35 @@ function employee(){
 				})				
 			},1000)		
 			con.release()	
+		})
+	}
+
+	this.addEmployment = function(data, res){		 	
+		db.acquire(function(err, con){	
+			setTimeout(function(){
+				con.query('INSERT INTO employee_employment SET ?', data, function(err, results){																	
+					if (err){
+						res.send({status: 0, message: err});
+					}else{
+						res.send({status: 1, message: 'Success'});										
+					}	
+				})						
+				con.release()	
+			},1000);				
+		})
+	}
+	this.updateEmployment = function(data, res){		 	
+		db.acquire(function(err, con){	
+			setTimeout(function(){
+				con.query('UPDATE employee_employment SET ? WHERE id=?', [data, data.id], function(err, results){										
+					if (err){
+						res.send({status: 0, data: data, message: 'Database error'});
+					}else{
+						res.send({status: 1, message: 'Success'});					
+					}	
+				})					
+				con.release()	
+			},1000);				
 		})
 	}
 }

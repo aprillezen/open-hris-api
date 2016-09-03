@@ -113,12 +113,23 @@ module.exports = {
 		app.get('/employee/list/', function(req, res){
 			employee.getlist(res);
 		});
+
 		app.get('/employee/employment/:id', function(req, res){
 			employee.getemployment(req.params.id, res);
 		});
+
 		app.get('/employee/employment/edit/:id', function(req, res){
 			employee.employmentedit(req.params.id, res);
 		});
+
+		app.post('/employee/employment/add/', function(req, res){
+			employee.addEmployment(req.body, res);
+		});
+
+		app.post('/employee/employment/update/', function(req, res){
+			employee.updateEmployment(req.body, res);
+		});
+
 	},
 	configureLeaveType: function(app){	
 		app.get('/lt/', function(req, res){
