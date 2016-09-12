@@ -1,14 +1,14 @@
-
-var payaccount = require('../model/payaccount')
-var leavetype = require('../model/leavetype')
 var profile = require('../model/company_profile')
 var department = require('../model/department')
 var branches = require('../model/branches')
 var employee = require('../model/employee')
 var job = require('../model/jobtitles')
 var user = require('../model/user')
-var taxstatus = require('../model/taxstatus')
 
+var leavetype = require('../model/leave/leavetype')
+var shift =  require('../model/timekeeping/shift')
+var taxstatus = require('../model/payroll/taxstatus')
+var payaccount = require('../model/payroll/payaccount')
 
 module.exports = {
 	configureLogin: function(app){
@@ -199,4 +199,29 @@ module.exports = {
 		});
 	},
 
+	configureShift: function(app){	
+		app.get('/shift/', function(req, res){
+			shift.get(res);
+		});
+
+		app.get('/shift/edit/:id/', function(req, res){
+			shift.edit(req.params.id, res);
+		});
+
+		app.post('/shift/add/', function(req, res){
+			shift.save(req.body, res);
+		});
+
+		app.post('/shift/update/', function(req, res){
+			shift.update(req.body, res);
+		});
+
+		app.get('/shift/delete/:id/', function(req, res){
+			shift.delete(req.params.id, res);
+		});
+	}
+
+	
 }
+
+

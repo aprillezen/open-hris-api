@@ -1,9 +1,9 @@
-var db  = require('../db');
+var db  = require('../../db');
 
-function taxstatus(){
+function shift(){
 	this.get = function(res){
 		db.acquire(function(err, con){				
-			con.query('SELECT * FROM py_taxstatus', function(err, results){						
+			con.query('SELECT * FROM tm_shift', function(err, results){						
 				con.release()
 				setTimeout(function(){
 					if (err){					
@@ -17,14 +17,14 @@ function taxstatus(){
 	}
 	this.edit = function(id, res){
 		db.acquire(function(err, con){				
-			con.query('SELECT * FROM py_taxstatus WHERE id=?', id, function(err, results){										
+			con.query('SELECT * FROM tm_shift WHERE id=?', id, function(err, results){										
 				if (err){
 					res.send({status: 0, message: 'Database error'});
 				}else{		
 					if (results.length>0){		
 						res.send({status: 1, data: results[0] });	
 					}else{
-						res.send({status: 0, message: "Tax status does not exists!" });
+						res.send({status: 0, message: "Shift does not exists!" });
 					}												
 				}	
 			})
@@ -34,15 +34,16 @@ function taxstatus(){
 	this.save = function(data, res){		
 		db.acquire(function(err, con){	
 			setTimeout(function(){
-				con.query('SELECT * FROM py_taxstatus WHERE taxcode=?', data.taxcode, function(err, results){											
+				con.query('SELECT * FROM tm_shift WHERE description=?', data.description, function(err, results){											
 					if (results.length>0){
-						res.send({status: 0, message: 'Tax status already exist!'});
-					}else{
-						con.query('INSERT INTO py_taxstatus SET ?', data, function(err, results){																	
+						res.send({status: 0, message: 'Shift already exist!'});
+					}else{						
+						con.query('INSERT INTO tm_shift SET ?', data, function(err, results){																	
 							if (err){
+								console.log(err)
 								res.send({status: 0, message: 'Database error'});
 							}else{
-								con.query('SELECT * FROM py_taxstatus ORDER BY id', function(err, results){													
+								con.query('SELECT * FROM tm_shift ORDER BY id', function(err, results){													
 									res.send({status: 1, data: results[results.length-1], message: 'Success'});				
 								})												
 							}	
@@ -56,11 +57,11 @@ function taxstatus(){
 	this.update = function(data, res){		
 		db.acquire(function(err, con){	
 			setTimeout(function(){
-				con.query('SELECT * FROM py_taxstatus WHERE taxcode=? AND id<>?', [data.taxcode, data.id], function(err, results){
+				con.query('SELECT * FROM tm_shift WHERE description=? AND id<>?', [data.description, data.id], function(err, results){
 					if (results.length>0){
-						res.send({status: 0, message: 'Tax status already exist!'});
+						res.send({status: 0, message: 'Shift already exist!'});
 					}else{
-						con.query('UPDATE py_taxstatus SET ? WHERE id=?', [data, data.id], function(err, results){										
+						con.query('UPDATE tm_shift SET ? WHERE id=?', [data, data.id], function(err, results){										
 							if (err){
 								res.send({status: 0, data: data, message: 'Database error'});
 							}else{
@@ -77,7 +78,7 @@ function taxstatus(){
 	this.delete = function(id, res){		
 		db.acquire(function(err, con){	
 			setTimeout(function(){	
-				con.query('DELETE FROM py_taxstatus WHERE id=?', id, function(err, results){										
+				con.query('DELETE FROM tm_shift WHERE id=?', id, function(err, results){										
 				if (err){
 					res.send({status: 0, message: 'Database error'});
 				}else{
@@ -90,6 +91,6 @@ function taxstatus(){
 	}
 }
 
-module.exports = new taxstatus();
+module.exports = new shift();
 
 
