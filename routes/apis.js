@@ -6,9 +6,11 @@ var job = require('../model/jobtitles')
 var user = require('../model/user')
 
 var leavetype = require('../model/leave/leavetype')
-var shift =  require('../model/timekeeping/shift')
 var taxstatus = require('../model/payroll/taxstatus')
 var payaccount = require('../model/payroll/payaccount')
+
+var shift =  require('../model/timekeeping/shift')
+var holiday =  require('../model/timekeeping/holiday')
 
 module.exports = {
 	configureLogin: function(app){
@@ -218,6 +220,28 @@ module.exports = {
 
 		app.get('/shift/delete/:id/', function(req, res){
 			shift.delete(req.params.id, res);
+		});
+	},
+
+	configureHoliday: function(app){	
+		app.get('/holiday/:id', function(req, res){
+			holiday.get(req.params.id, res);
+		});
+
+		app.get('/holiday/edit/:id/', function(req, res){
+			holiday.edit(req.params.id, res);
+		});
+
+		app.post('/holiday/add/', function(req, res){
+			holiday.save(req.body, res);
+		});
+
+		app.post('/holiday/update/', function(req, res){
+			holiday.update(req.body, res);
+		});
+
+		app.get('/holiday/delete/:id/', function(req, res){
+			holiday.delete(req.params.id, res);
 		});
 	}
 

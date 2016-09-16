@@ -41,6 +41,7 @@ api.configureLeaveType(app);
 api.configurePayAccount(app);
 api.configureTaxStatus(app);
 api.configureShift(app);
+api.configureHoliday(app);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
