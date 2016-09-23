@@ -11,6 +11,7 @@ var payaccount = require('../model/payroll/payaccount')
 
 var shift =  require('../model/timekeeping/shift')
 var holiday =  require('../model/timekeeping/holiday')
+var dailyclock =  require('../model/timekeeping/dailyclock')
 
 module.exports = {
 	configureLogin: function(app){
@@ -132,6 +133,14 @@ module.exports = {
 			employee.updateEmployment(req.body, res);
 		});
 
+		app.get('/employee/personal/:id/', function(req, res){
+			employee.getpersonal(req.params.id, res);
+		});
+
+		app.get('/employee/personal/', function(req, res){
+			employee.getpersonallist(res);
+		});
+
 	},
 	configureLeaveType: function(app){	
 		app.get('/lt/', function(req, res){
@@ -243,7 +252,16 @@ module.exports = {
 		app.get('/holiday/delete/:id/', function(req, res){
 			holiday.delete(req.params.id, res);
 		});
-	}
+	},
+
+	configureDailyClock: function(app){	
+		app.get('/attlog/:id/:datestart/:dateend', function(req, res){
+			dailyclock.get(req.params.id, req.params.datestart, req.params.dateend, res)			
+		});
+		
+	},
+
+
 
 	
 }

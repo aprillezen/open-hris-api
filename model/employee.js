@@ -104,6 +104,51 @@ function employee(){
 		})
 	}
 
+	this.getpersonallist = function(res){
+		db.acquire(function(err, con){	
+			setTimeout(function(){	
+				var sql = "SELECT employee.id, employeeId, CONCAT(fname,' ', lname) AS fullname, jobtitles.title as jobtitle "
+					sql = sql +	' FROM jobtitles '
+					sql = sql +	' LEFT OUTER JOIN employee_employment ON jobtitles.id=employee_employment.jobtitle '
+					sql = sql +	' RIGHT OUTER JOIN employee ON employee_employment.id=employee.id'					
+					con.query(sql, function(err, results){							
+						if (err){
+							res.send({status: 0, message: 'Database error'});
+						}else{
+							res.send({status: 1, data: results});									
+						}	
+					})
+			},1000)		
+			con.release()	
+		})
+	}
+
+	this.getpersonal = function(id, res){
+		db.acquire(function(err, con){	
+			setTimeout(function(){	
+				var sql = "SELECT employee.id, employeeId, CONCAT(fname,' ', lname) AS fullname, jobtitles.title as jobtitle "
+					sql = sql +	' FROM jobtitles '
+					sql = sql +	' LEFT OUTER JOIN employee_employment ON jobtitles.id=employee_employment.jobtitle '
+					sql = sql +	' RIGHT OUTER JOIN employee ON employee_employment.id=employee.id'					
+					sql = sql +	' WHERE employee.id = ?'					
+					con.query(sql, id, function(err, results){							
+						if (err){
+							res.send({status: 0, message: 'Database error'});
+						}else{
+							if (results.length>0){
+								res.send({status: 1, data: results[0]});	
+							}else{
+								res.send({status: 0, message: 'No record'});
+							}										
+						}	
+					})
+			},1000)		
+			con.release()	
+		})
+	}
+
+
+
 	this.getemployment = function(id, res){
 		db.acquire(function(err, con){	
 			setTimeout(function(){	
