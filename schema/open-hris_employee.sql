@@ -16,31 +16,14 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `employee`
+-- Dumping data for table `employee`
 --
 
-DROP TABLE IF EXISTS `employee`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `employee` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `employeeId` varchar(20) DEFAULT NULL,
-  `fname` varchar(45) DEFAULT NULL,
-  `lname` varchar(45) DEFAULT NULL,
-  `mname` varchar(45) DEFAULT NULL,
-  `birthdate` datetime DEFAULT NULL,
-  `civilstat` varchar(1) DEFAULT NULL,
-  `gender` varchar(1) DEFAULT NULL,
-  `address` varchar(300) DEFAULT NULL,
-  `city` varchar(45) DEFAULT NULL,
-  `province` varchar(45) DEFAULT NULL,
-  `zipcode` varchar(5) DEFAULT NULL,
-  `homephone` varchar(20) DEFAULT NULL,
-  `mobilephone` varchar(20) DEFAULT NULL,
-  `emailadd` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
+LOCK TABLES `employee` WRITE;
+/*!40000 ALTER TABLE `employee` DISABLE KEYS */;
+INSERT INTO `employee` VALUES (12,'10001','Dondon','Abion','Tuyay','1993-09-15 00:00:00','1','0','Blk 8, Lot 76 Ph 1 Ext, Greengate Homes','Imus','Cavite','4102','','','ab_dondon@yahoo.com'),(13,'10002','Shiela','Abion','Comia','1993-09-14 00:00:00','1','0','','','','','','',''),(14,'10003','Aprille','Abion','Comia','2012-04-05 00:00:00','0','0','Blk 8, Lot 76, Phase 1 Ext. Malagasang','Imus','Cavite','4102','02-837-9303','0931-9878902','aprille@yahoo.com'),(15,'10004','Rodrigo','Duterte','Lao','2000-01-02 00:00:00','1','0','','','','','','',''),(16,'10005','Jack','Reacher','Jao','1989-04-02 00:00:00','1','1','','','','','','',''),(17,'10006','Kaissieh','Abion','Comia','2004-04-05 00:00:00','0','0','','','','','','','');
+/*!40000 ALTER TABLE `employee` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -51,4 +34,4 @@ CREATE TABLE `employee` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-08-23 22:04:39
+-- Dump completed on 2016-10-23 22:26:10

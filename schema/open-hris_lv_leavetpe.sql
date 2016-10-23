@@ -16,13 +16,13 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Dumping data for table `department`
+-- Dumping data for table `lv_leavetpe`
 --
 
-LOCK TABLES `department` WRITE;
-/*!40000 ALTER TABLE `department` DISABLE KEYS */;
-INSERT INTO `department` VALUES (11,'Accounting',0),(12,'Sales',7),(13,'Customer Service',9),(15,'Finance',0),(16,'Information Techology',7);
-/*!40000 ALTER TABLE `department` ENABLE KEYS */;
+LOCK TABLES `lv_leavetpe` WRITE;
+/*!40000 ALTER TABLE `lv_leavetpe` DISABLE KEYS */;
+INSERT INTO `lv_leavetpe` VALUES (11,'VL','Vacation Leave',3),(12,'PL','Paternity Leave',4);
+/*!40000 ALTER TABLE `lv_leavetpe` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

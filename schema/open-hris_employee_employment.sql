@@ -16,33 +16,14 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `employee_employment`
+-- Dumping data for table `employee_employment`
 --
 
-DROP TABLE IF EXISTS `employee_employment`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `employee_employment` (
-  `id` int(11) NOT NULL,
-  `startdate` datetime DEFAULT NULL,
-  `jobtitle` int(11) DEFAULT NULL,
-  `joblevel` int(11) DEFAULT NULL,
-  `category` int(11) DEFAULT NULL,
-  `schedule` int(11) DEFAULT NULL,
-  `empstatus` int(11) DEFAULT NULL,
-  `separationdate` datetime DEFAULT NULL,
-  `paymentmode` int(11) DEFAULT NULL,
-  `branch` int(11) DEFAULT NULL,
-  `department` int(11) DEFAULT NULL,
-  `group` int(11) DEFAULT NULL,
-  `sssno` varchar(20) DEFAULT NULL,
-  `philhealthno` varchar(20) DEFAULT NULL,
-  `pagibigno` varchar(20) DEFAULT NULL,
-  `tin` varchar(20) DEFAULT NULL,
-  `taxstatus` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
+LOCK TABLES `employee_employment` WRITE;
+/*!40000 ALTER TABLE `employee_employment` DISABLE KEYS */;
+INSERT INTO `employee_employment` VALUES (12,'1993-09-09 00:00:00',12,1,0,1,0,NULL,0,9,16,'','','','',6),(13,'2004-10-19 00:00:00',3,0,0,0,2,NULL,0,7,13,'','','','',6);
+/*!40000 ALTER TABLE `employee_employment` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -53,4 +34,4 @@ CREATE TABLE `employee_employment` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-08-23 22:04:39
+-- Dump completed on 2016-10-23 22:26:10

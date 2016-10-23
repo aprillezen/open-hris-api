@@ -16,24 +16,14 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `branches`
+-- Dumping data for table `branches`
 --
 
-DROP TABLE IF EXISTS `branches`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `branches` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `branchname` varchar(45) DEFAULT NULL,
-  `address` varchar(300) DEFAULT NULL,
-  `city` varchar(45) DEFAULT NULL,
-  `province` varchar(45) DEFAULT NULL,
-  `zipcode` varchar(5) DEFAULT NULL,
-  `phoneno` varchar(20) DEFAULT NULL,
-  `head` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
+LOCK TABLES `branches` WRITE;
+/*!40000 ALTER TABLE `branches` DISABLE KEYS */;
+INSERT INTO `branches` VALUES (6,'Pasig','Bagong ILog','Pasig','NCR','4527','028263528',0),(7,'Cavite Branch','Malagasang','Imus','Cavite','4102','092736393',0),(8,'Cebu Branch','Cebu','Cebu','','','1',0),(9,'Main Office','HO','Makati','1','','2',11);
+/*!40000 ALTER TABLE `branches` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -44,4 +34,4 @@ CREATE TABLE `branches` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-08-23 22:04:39
+-- Dump completed on 2016-10-23 22:26:10

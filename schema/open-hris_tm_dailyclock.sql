@@ -16,13 +16,13 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Dumping data for table `department`
+-- Dumping data for table `tm_dailyclock`
 --
 
-LOCK TABLES `department` WRITE;
-/*!40000 ALTER TABLE `department` DISABLE KEYS */;
-INSERT INTO `department` VALUES (11,'Accounting',0),(12,'Sales',7),(13,'Customer Service',9),(15,'Finance',0),(16,'Information Techology',7);
-/*!40000 ALTER TABLE `department` ENABLE KEYS */;
+LOCK TABLES `tm_dailyclock` WRITE;
+/*!40000 ALTER TABLE `tm_dailyclock` DISABLE KEYS */;
+INSERT INTO `tm_dailyclock` VALUES (1,'12','2016-09-25 00:00:00','08:00:00',0),(2,'12','2016-09-26 00:00:00','09:00:00',0);
+/*!40000 ALTER TABLE `tm_dailyclock` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

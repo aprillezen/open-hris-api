@@ -16,13 +16,13 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Dumping data for table `department`
+-- Dumping data for table `tm_holiday`
 --
 
-LOCK TABLES `department` WRITE;
-/*!40000 ALTER TABLE `department` DISABLE KEYS */;
-INSERT INTO `department` VALUES (11,'Accounting',0),(12,'Sales',7),(13,'Customer Service',9),(15,'Finance',0),(16,'Information Techology',7);
-/*!40000 ALTER TABLE `department` ENABLE KEYS */;
+LOCK TABLES `tm_holiday` WRITE;
+/*!40000 ALTER TABLE `tm_holiday` DISABLE KEYS */;
+INSERT INTO `tm_holiday` VALUES (8,2015,'Q','2015-01-01 00:00:00',0,'2015-01-13 00:00:00'),(9,2015,'dwdw','2015-01-28 00:00:00',0,NULL),(10,2016,'Christmas Day','2016-12-25 00:00:00',3,'2016-01-27 00:00:00'),(11,2016,'All Souls Day','2016-11-01 00:00:00',0,NULL),(12,2016,'National Heroes Day','2016-08-29 00:00:00',0,NULL),(13,2016,'Edil Ftr','2016-01-07 00:00:00',1,NULL),(14,2016,'Labor\'s Day','2016-01-11 00:00:00',0,NULL),(15,2016,'Valentines Day','2016-01-25 00:00:00',2,NULL);
+/*!40000 ALTER TABLE `tm_holiday` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -34,4 +34,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-10-23 22:26:11
+-- Dump completed on 2016-10-23 22:26:10

@@ -16,20 +16,14 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `jobtitles`
+-- Dumping data for table `jobtitles`
 --
 
-DROP TABLE IF EXISTS `jobtitles`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `jobtitles` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(80) DEFAULT NULL,
-  `jobdesc` varchar(300) DEFAULT NULL,
-  `duties` varchar(500) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
+LOCK TABLES `jobtitles` WRITE;
+/*!40000 ALTER TABLE `jobtitles` DISABLE KEYS */;
+INSERT INTO `jobtitles` VALUES (3,'Software Tester','Test software','Create test cases, test plan & test scripts'),(12,'Project Manager','Pm','xh'),(13,'Business Analyst','BA','xs'),(14,'Seniour Programmer','SP','s'),(15,'Sales Coordinator','sales','sales'),(17,'Admin Assistant','swd','dw');
+/*!40000 ALTER TABLE `jobtitles` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -40,4 +34,4 @@ CREATE TABLE `jobtitles` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-08-23 22:04:39
+-- Dump completed on 2016-10-23 22:26:11
